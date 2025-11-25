@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../api/productService";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
-import { 
-  FaTruck, 
-  FaUndo, 
-  FaShieldAlt, 
+import {
+  FaTruck,
+  FaUndo,
+  FaShieldAlt,
   FaHeadset,
   FaStar,
   FaArrowRight,
@@ -17,9 +17,9 @@ import {
   FaGem,
   FaBook
 } from "react-icons/fa";
-import { 
-  HiSparkles, 
-  HiShoppingCart 
+import {
+  HiSparkles,
+  HiShoppingCart
 } from "react-icons/hi";
 
 export default function Home() {
@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Enhanced Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden">
+      {/* <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
         <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl"></div>
@@ -109,6 +109,58 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className="relative bg-white text-gray-900 overflow-hidden border-b border-gray-200">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent"></div>
+
+        <div className="container mx-auto px-6 py-32 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
+            <div className="lg:w-1/2">
+              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <HiSparkles className="text-blue-600" />
+                New Season Collection
+              </div>
+
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Elevate Your
+                <span className="block text-blue-600">Everyday Style</span>
+              </h1>
+
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
+                Discover curated collections that blend timeless elegance with modern innovation.
+                Quality craftsmanship meets contemporary design.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/products"
+                  className="bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg"
+                >
+                  <HiShoppingCart className="text-lg" />
+                  Shop Collection
+                </Link>
+                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-3">
+                  View Lookbook
+                  <FaArrowRight />
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:w-1/2 flex justify-center">
+              <div className="relative">
+                <div className="w-96 h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl shadow-2xl flex items-center justify-center p-8">
+                  <div className="text-center">
+                    <FaGem className="text-gray-400 text-6xl mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Premium Quality</h3>
+                    <p className="text-gray-600">Exceptional products for exceptional people</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Features Section */}
@@ -116,7 +168,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div 
+              <div
                 key={index}
                 className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
@@ -139,7 +191,7 @@ export default function Home() {
             Handpicked selection of premium products just for you
           </p>
         </div>
-        
+
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
@@ -151,7 +203,7 @@ export default function Home() {
             ))}
           </div>
         )}
-        
+
         <div className="text-center mt-12">
           <Link
             to="/products"
@@ -170,10 +222,10 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-4 text-gray-800">Shop by Category</h2>
             <p className="text-xl text-gray-600">Explore our wide range of categories</p>
           </div>
-          
+
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {categories.map((category, index) => (
-              <Link 
+              <Link
                 key={index}
                 to={category.path}
                 className="group"
@@ -198,8 +250,8 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
           <p className="text-xl mb-8 text-blue-100">Get the latest deals and product updates</p>
           <div className="max-w-md mx-auto flex gap-4">
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 rounded-xl border-0 focus:ring-2 focus:ring-blue-300 text-gray-800"
             />

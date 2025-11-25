@@ -35,7 +35,7 @@ export default function App() {
             <Route path="/orders" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<ProtectedRoute><Profile/></ProtectedRoute>} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/product/new" element={<ProductForm />} />
             <Route path="/admin/create-admin" element={<CreateAdmin />} />

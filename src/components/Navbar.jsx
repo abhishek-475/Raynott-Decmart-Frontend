@@ -8,16 +8,13 @@ import {
   HiShoppingCart, 
   HiUser, 
   HiLogout,
-  HiCog,
   HiHome,
-  HiShoppingBag,
-  HiSearch
+  HiShoppingBag
 } from "react-icons/hi";
 import { 
   FaUserShield, 
   FaGem, 
-  FaCrown,
-  FaBell
+  FaCrown
 } from "react-icons/fa";
 
 function Navbar() {
@@ -89,18 +86,6 @@ function Navbar() {
             })}
           </div>
 
-          {/* Search Bar - Desktop */}
-          {/* <div className="hidden md:flex flex-1 max-w-md mx-8">
-            <div className="relative w-full">
-              <HiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200"
-              />
-            </div>
-          </div> */}
-
           {/* Desktop Right Menu */}
           <div className="hidden md:flex items-center gap-4">
             
@@ -122,108 +107,117 @@ function Navbar() {
               </div>
             </Link>
 
-            {/* Notifications */}
-            {/* <button className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 group">
-              <FaBell size={20} />
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                Notifications
-              </div>
-            </button> */}
+            {/* User Menu or Login Button */}
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 p-2 rounded-xl hover:bg-gray-50 transition-colors duration-200 border border-transparent hover:border-gray-200"
+                >
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    {user?.name?.charAt(0).toUpperCase() || <HiUser size={16} />}
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-sm font-medium text-gray-900">
+                      {user?.name || 'Guest'}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      {user?.isAdmin ? 'Administrator' : 'Customer'}
+                    </span>
+                  </div>
+                </button>
 
-            {/* User Menu */}
-            <div className="relative">
-              <button
-                onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center gap-2 p-2 rounded-xl hover:bg-gray-50 transition-colors duration-200 border border-transparent hover:border-gray-200"
-              >
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                  {user?.name?.charAt(0).toUpperCase() || <HiUser size={16} />}
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-sm font-medium text-gray-900">
-                    {user?.name || 'Guest'}
-                  </span>
-                  <span className="text-xs text-gray-500">
-                    {user?.isAdmin ? 'Administrator' : 'Customer'}
-                  </span>
-                </div>
-              </button>
-
-              {/* User Dropdown Menu */}
-              {showUserMenu && (
-                <>
-                  <div 
-                    className="fixed inset-0 z-10" 
-                    onClick={() => setShowUserMenu(false)}
-                  />
-                  <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-200 py-2 z-20">
-                    {/* User Info */}
-                    <div className="px-4 py-3 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
-                          {user?.name?.charAt(0).toUpperCase()}
+                {/* User Dropdown Menu */}
+                {showUserMenu && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-10" 
+                      onClick={() => setShowUserMenu(false)}
+                    />
+                    <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-200 py-2 z-20">
+                      {/* User Info */}
+                      <div className="px-4 py-3 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+                            {user?.name?.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 truncate">
+                              {user?.name}
+                            </p>
+                            <p className="text-xs text-gray-500 truncate">
+                              {user?.email}
+                            </p>
+                          </div>
+                          {user?.isAdmin && (
+                            <FaCrown className="text-yellow-500 flex-shrink-0" />
+                          )}
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-gray-900 truncate">
-                            {user?.name}
-                          </p>
-                          <p className="text-xs text-gray-500 truncate">
-                            {user?.email}
-                          </p>
-                        </div>
-                        {user?.isAdmin && (
-                          <FaCrown className="text-yellow-500 flex-shrink-0" />
-                        )}
                       </div>
-                    </div>
 
-                    {/* Admin Links */}
-                    {user?.isAdmin && (
+                      {/* Admin Links */}
+                      {user?.isAdmin && (
+                        <div className="border-b border-gray-100 pb-2">
+                          <Link
+                            to="/admin"
+                            onClick={() => setShowUserMenu(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                          >
+                            <FaUserShield className="text-blue-500" />
+                            Admin Dashboard
+                          </Link>
+                        </div>
+                      )}
+
+                      {/* User Links */}
                       <div className="border-b border-gray-100 pb-2">
                         <Link
-                          to="/admin"
+                          to="/profile"
                           onClick={() => setShowUserMenu(false)}
-                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                         >
-                          <FaUserShield className="text-blue-500" />
-                          Admin Dashboard
+                          <HiUser size={16} />
+                          My Profile
+                        </Link>
+                        <Link
+                          to="/orders"
+                          onClick={() => setShowUserMenu(false)}
+                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        >
+                          <HiShoppingBag size={16} />
+                          My Orders
                         </Link>
                       </div>
-                    )}
 
-                    {/* User Links */}
-                    <div className="border-b border-gray-100 pb-2">
-                      <Link
-                        to="/profile"
-                        onClick={() => setShowUserMenu(false)}
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                      {/* Logout */}
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                       >
-                        <HiUser size={16} />
-                        My Profile
-                      </Link>
-                      <Link
-                        to="/orders"
-                        onClick={() => setShowUserMenu(false)}
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                      >
-                        <HiShoppingBag size={16} />
-                        My Orders
-                      </Link>
+                        <HiLogout size={16} />
+                        Sign Out
+                      </button>
                     </div>
-
-                    {/* Logout */}
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center gap-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
-                    >
-                      <HiLogout size={16} />
-                      Sign Out
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              // Show Login/Register buttons when no user is logged in
+              <div className="flex items-center gap-3">
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -234,18 +228,6 @@ function Navbar() {
             {open ? <HiX size={24} /> : <HiMenu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Search Bar */}
-        {/* <div className="md:hidden pb-3">
-          <div className="relative">
-            <HiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200"
-            />
-          </div>
-        </div> */}
       </div>
 
       {/* Mobile Dropdown Menu */}
@@ -292,21 +274,21 @@ function Navbar() {
               Cart ({cartCount})
             </Link>
 
-            {/* Admin Dashboard */}
-            {user?.isAdmin && (
-              <Link
-                to="/admin"
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
-              >
-                <FaUserShield />
-                Admin Dashboard
-              </Link>
-            )}
-
             {/* User Section */}
             {user ? (
               <>
+                {/* Admin Dashboard */}
+                {user?.isAdmin && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
+                  >
+                    <FaUserShield />
+                    Admin Dashboard
+                  </Link>
+                )}
+
                 <div className="px-4 py-3 border-t border-gray-100 mt-2">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
@@ -323,6 +305,25 @@ function Navbar() {
                   </div>
                 </div>
 
+                {/* User Links */}
+                <Link
+                  to="/profile"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
+                >
+                  <HiUser size={20} />
+                  My Profile
+                </Link>
+
+                <Link
+                  to="/orders"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
+                >
+                  <HiShoppingBag size={20} />
+                  My Orders
+                </Link>
+
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-3 w-full px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors text-left"
@@ -332,14 +333,25 @@ function Navbar() {
                 </button>
               </>
             ) : (
-              <Link
-                to="/login"
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200"
-              >
-                <HiUser size={20} />
-                Login / Register
-              </Link>
+              // Show Login/Register in mobile menu when no user
+              <div className="space-y-2 border-t border-gray-100 pt-4 mt-2">
+                <Link
+                  to="/login"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+                >
+                  <HiUser size={20} />
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200"
+                >
+                  <HiUser size={20} />
+                  Create Account
+                </Link>
+              </div>
             )}
           </div>
         </div>
