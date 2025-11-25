@@ -60,56 +60,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Enhanced Hero Section */}
-      {/* <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl"></div>
-        
-        <div className="container mx-auto px-4 py-24 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <div className="flex items-center mb-4">
-                <HiSparkles className="text-yellow-300 text-xl mr-2" />
-                <span className="text-blue-200 font-semibold">Premium Shopping Experience</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Discover Amazing
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
-                  Products
-                </span>
-              </h1>
-              <p className="text-xl mb-8 text-blue-100 max-w-lg">
-                Shop from thousands of products with exclusive deals, fast delivery, and premium quality guaranteed!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/products"
-                  className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
-                >
-                  <HiShoppingCart className="text-lg" />
-                  Shop Now
-                </Link>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2">
-                  Learn More
-                  <FaArrowRight />
-                </button>
-              </div>
-            </div>
-            
-            <div className="md:w-1/2 flex justify-center">
-              <div className="relative">
-                <div className="w-80 h-80 bg-gradient-to-br from-white/20 to-white/5 rounded-2xl backdrop-blur-sm border border-white/20 shadow-2xl flex items-center justify-center">
-                  <FaShoppingBag className="text-white text-8xl opacity-80" />
-                </div>
-                <div className="absolute -top-4 -right-4 bg-yellow-400 text-gray-900 px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-lg">
-                  <FaStar className="text-yellow-600" />
-                  Trusted by 10K+ Customers
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      
       <div className="relative bg-white text-gray-900 overflow-hidden border-b border-gray-200">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
@@ -141,10 +92,7 @@ export default function Home() {
                   <HiShoppingCart className="text-lg" />
                   Shop Collection
                 </Link>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-3">
-                  View Lookbook
-                  <FaArrowRight />
-                </button>
+               
               </div>
             </div>
 
