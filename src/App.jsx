@@ -17,12 +17,15 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import ProductForm from './pages/Admin/ProductForm';
 import CreateAdmin from './components/CreateAdmin';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <AuthProvider>
       <div className="min-h-screen bg-gray-50">
         <Toaster position="top-right" />
+        <ScrollToTop />
         <Navbar />
         <div className="container mx-auto p-4">
           <Routes>
@@ -43,6 +46,7 @@ export default function App() {
             {/* admin routes */}
           </Routes>
         </div>
+        <Footer/>
       </div>
     </AuthProvider>
   );

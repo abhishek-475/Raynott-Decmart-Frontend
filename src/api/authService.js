@@ -20,9 +20,21 @@ export const getProfile = async () => {
 
 // UPDATE USER PROFILE
 export const updateProfile = async (data) => {
-  const res = await api.put("/auth/profile", data);
-  return res.data;
+  try {
+    console.log('Sending update data:', data);
+    const res = await api.put("/auth/profile", data);
+    console.log('Update response:', res.data);
+    return res.data;
+  } catch (error) {
+    console.error('Update Profile Full Error:', {
+      status: error.response?.status,
+      data: error.response?.data,
+      message: error.message
+    });
+    throw error;
+  }
 };
+
 
 // GET ALL USERS (Admin only)
 export const getAllUsers = async () => {
